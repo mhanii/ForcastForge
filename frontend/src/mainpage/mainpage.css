@@ -1,0 +1,28 @@
+.mainpage-main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 0.75rem ;
+    
+}
+.mainpage-title{
+    font-size: 5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    font-family: "Jersey 20", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  
+
+}
+.mainpage-subtitle{
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    font-family: "Jersey 20", sans-serif;
+}
