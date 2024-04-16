@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,11 +23,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7$nk$_6-m^a8sdhukcs_^fdf%2o7)5+c^zpl%f5qsp_d4j!7@o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
-
+STATICFILES_ALLOWED_MIME_TYPES = [
+    'text/css',
+    'application/javascript',
+    # Add other MIME types as needed
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,9 +45,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'users',
+    'url_checker',
 ]
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5137',
+    'http://localhost:5173',
 
     # API URL
 ]
@@ -123,9 +128,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-
+STATIC_ROOT = 'static'
 STATIC_URL = 'static/'
-
+REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend') 
+STATICFILES_DIRS = [
+    os.path.join(REACT_APP_DIR, 'dist','static'),
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

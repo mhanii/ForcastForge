@@ -16,7 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from url_checker.views import check_url
+from users.views import auth
+from django.urls import include, re_path
+from core.views import FrontendAppView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('url_checker', check_url),
+    path('auth', auth),
+    re_path(r'^', FrontendAppView.as_view())
+
+
 ]
