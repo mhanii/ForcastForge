@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useIP } from '../../common/Context';
-export default function getLocation() {
-  const [IpAddress, setIpAddress] = useState('');
-  const [geoInfo, setGeoInfo] = useState({});
-  const { updateIP, updateCity} = useIP();
 
-  
+export default function GetLocation() {
+  const [ipAddress, setIpAddress] = useState('');
+  const [geoInfo, setGeoInfo] = useState({});
+  const { updateIP, updateCity } = useIP();
+
   useEffect(() => {
     const fetchIpAddress = async () => {
       try {
@@ -22,24 +22,24 @@ export default function getLocation() {
   useEffect(() => {
     const fetchGeoInfo = async () => {
       try {
-        const response = await fetch(`https://ipapi.co/${IpAddress}/json/`);
+        const response = await fetch(`https://ipapi.co/${ipAddress}/json/`);
         const data = await response.json();
         setGeoInfo(data);
       } catch (error) {
         console.error('Error fetching Geo information:', error);
       }
     };
-    if (IpAddress) {
-      updateIP(IpAddress);
-      console.log(IpAddress);
+    if (ipAddress) {
+      updateIP(ipAddress);
       fetchGeoInfo();
-      
     }
-  }, [IpAddress]);
+  }, [ipAddress, updateIP]);
 
-  const cityName = geoInfo.city || 'Unknown';
-  updateCity(cityName);
-  return (
-    <></>
-  );
+  useEffect(() => {
+    if (geoInfo.city) {
+      updateCity(geoInfo.city);
+    }
+  }, [geoInfo, updateCity]);
+
+  return null;
 }

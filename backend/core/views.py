@@ -13,9 +13,9 @@ class FrontendAppView(View):
     run build`).
     """
     def get(self, request):
-        print (os.path.join(settings.REACT_APP_DIR, 'dist/index.html'))
+        print (os.path.join(settings.REACT_APP_DIR, 'static\index.html'))
         try:
-            with open(os.path.join(settings.REACT_APP_DIR, 'dist/index.html')) as f:
+            with open(os.path.join(settings.REACT_APP_DIR, 'static\index.html')) as f:
                 return HttpResponse(f.read())
         except FileNotFoundError:
             logging.exception('Production build of app not found')

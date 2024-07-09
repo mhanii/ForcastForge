@@ -1381,13 +1381,13 @@ const WeatherForecast = () => {
             <div className="current-weather-main">
               <div className="current-weather-icon">{getWeatherEmoji(forecast[0].IconPhrase)}</div>
               <div className="current-weather-temp">
-                <span className="temp-value">{forecast[0].Temperature.Value}</span>
-                <span className="temp-unit">°{forecast[0].Temperature.Unit}</span>
+                <span className="temp-value">{Math.round((forecast[0].Temperature.Value-32) * 5/9)}</span>
+                <span className="temp-unit">°C</span>
               </div>
             </div>
             <div className="current-weather-details">
               <p className="weather-phrase">{forecast[0].IconPhrase}</p>
-              <p>Feels like: {forecast[0].RealFeelTemperature.Value}°{forecast[0].RealFeelTemperature.Unit}</p>
+              <p>Feels like: {Math.round((forecast[0].RealFeelTemperature.Value-32) * 5/9)}°C</p>
               <p>Wind: {forecast[0].Wind.Speed.Value} {forecast[0].Wind.Speed.Unit} {forecast[0].Wind.Direction.English}</p>
               <p>Humidity: {forecast[0].RelativeHumidity}%</p>
               <p>Visibility: {forecast[0].Visibility.Value} {forecast[0].Visibility.Unit}</p>
@@ -1398,9 +1398,9 @@ const WeatherForecast = () => {
             {forecast.slice(1).map((weather, index) => (
               <div key={index} className="weather-card">
                 <div className="weather-icon">{getWeatherEmoji(weather.IconPhrase)}</div>
-                <p className="temperature">{weather.Temperature.Value}°{weather.Temperature.Unit}</p>
+                <p className="temperature">{Math.round((weather.Temperature.Value-32) * 5/9)}°C</p>
                 <p className="weather-phrase">{weather.IconPhrase}</p>
-                <p className="secondary-info">Feels: {weather.RealFeelTemperature.Value}°</p>
+                <p className="secondary-info">Feels: {Math.round((weather.RealFeelTemperature.Value-32) * 5/9)}°</p>
                 <p className="secondary-info">Wind: {weather.Wind.Speed.Value} {weather.Wind.Speed.Unit}</p>
                 <p className="time">{new Date(weather.DateTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</p>
               </div>

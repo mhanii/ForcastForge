@@ -14,10 +14,11 @@ function App() {
 
   return (
     <>
+          <Router>
+
       <Header />
       <IPProvider>
       <GetLocation />
-      <Router>
   <Routes>
     <Route path="/" element={<MainPage />} />
     <Route path="/login" element={<LoginPage />} />
@@ -25,9 +26,10 @@ function App() {
     <Route path="/pricing" element={<PricingPage />} />
     {/* Add other routes here */}
   </Routes>
+  </IPProvider>
+
 </Router>
       
-      </IPProvider>
     </>
   )
 }

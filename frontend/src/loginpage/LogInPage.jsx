@@ -1,15 +1,59 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 import '../signuppage/signuppage.css';
+import CSRFToken from '../common/CSRFToken';
+import SnackbarComponent from '../common/tools/SnackBar';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    severity: 'success',
+    timeout: 6000,
+  });
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const showSnackbar = (message, severity, timeout = 6000) => {
+    setSnackbar({ open: true, message, severity, timeout });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Login attempt with:', email, password);
+    try {
+      const config = {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'X-CSRFToken': Cookies.get('csrftoken'),
+        },
+        withCredentials: true,
+      };
+
+      const body = JSON.stringify({ email, password });
+
+      const res = await axios.post('api/auth/login', body, config);
+
+      if (res.data.success) {
+        showSnackbar('Logged in successfully', 'success', 3000);
+        Cookies.set('email', email, { expires: 2 });
+        
+        navigate('/');
+        window.location.reload();
+
+      } else {
+        window.location.reload();
+
+        showSnackbar(res.data.error, 'error', 3000);
+      }
+    } catch (err) {
+      console.error(err);
+      showSnackbar('An error occurred during login.', 'error');
+    }
   };
 
   return (
@@ -18,7 +62,8 @@ const LoginPage = () => {
         <img src="/path_to_your_logo.png" alt="ForecastForge Logo" className="logo" />
       </header>
       <main>
-        <form onSubmit={handleSubmit} className="auth-form">
+        <form method='post' onSubmit={(e) => {handleSubmit(e)}} className="auth-form">
+          <CSRFToken />
           <h2>Iniciar sesión</h2>
           <input
             type="email"
@@ -38,6 +83,13 @@ const LoginPage = () => {
         </form>
         <p>¿No tienes una cuenta? <Link to="/signup">Inscribirse</Link></p>
       </main>
+      <SnackbarComponent
+        open={snackbar.open}
+        message={snackbar.message}
+        severity={snackbar.severity}
+        timeout={snackbar.timeout}
+        onClose={() => setSnackbar(prev => ({ ...prev, open: false }))}
+      />
     </div>
   );
 };

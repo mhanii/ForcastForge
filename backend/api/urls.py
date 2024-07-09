@@ -1,8 +1,8 @@
 # urls.py
 from django.urls import path
-from api.views import AccuCastView,YahooWeatherView
+from api.views import AccuCastView,WeatherView
 
 urlpatterns = [
     path('hourly/', AccuCastView.as_view(), name='forecast'),
-    path('daily_normal/', YahooWeatherView.as_view(), name='daily_normal'),
+    path('weather_forecast/', WeatherView.as_view(), name='daily_normal'),
 ]
