@@ -36,7 +36,7 @@ const LoginPage = () => {
 
       const body = JSON.stringify({ email, password });
 
-      const res = await axios.post('api/auth/login', body, config);
+      const res = await axios.post('https://fullstack-forecast-forge-03fcfb305bcd.herokuapp.com/auth/login', body, config);
 
       if (res.data.success) {
         showSnackbar('Logged in successfully', 'success', 3000);
@@ -58,13 +58,11 @@ const LoginPage = () => {
 
   return (
     <div className="auth-container">
-      <header>
-        <img src="/path_to_your_logo.png" alt="ForecastForge Logo" className="logo" />
-      </header>
+
       <main>
         <form method='post' onSubmit={(e) => {handleSubmit(e)}} className="auth-form">
           <CSRFToken />
-          <h2>Iniciar sesión</h2>
+          <h1>Iniciar sesión</h1>
           <input
             type="email"
             placeholder="Email"

@@ -22,7 +22,7 @@ export default function RequireAuth({children}) {
         };
         const body = JSON.stringify({ email });
         const response = await axios.post(
-          'http://127.0.0.1:8000/auth/check_auth', body, config
+          'https://fullstack-forecast-forge-03fcfb305bcd.herokuapp.com/auth/check_auth', body, config
         );
 
         setIsAuthenticated(response.data.isAuthenticated === 'success');

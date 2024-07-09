@@ -96,7 +96,6 @@
     justify-content: center;
     align-items: center;
     padding: 0 0.5rem;
-    background-image: url('../assets/icons8-clouds-96.png');
     background-repeat: no-repeat;
     background-position: center;
     
@@ -136,25 +135,7 @@
     align-items: center;
     margin-left: auto;
 }
-.calendar-cell-container.Cloudy{
-    background-image: url('../assets/images/cloudy.png');
-}
 
-.calendar-cell-container.Sunny{
-    background-image: url('../assets/images/sunny.png');
-}
-.calendar-cell-container.Rainy{
-    background-image: url('../assets/images/rainy.png');
-}
-.calendar-cell-container.Snowy{
-    background-image: url('../assets/images/snowy.png');
-}
-.calendar-cell-container.Windy{
-    background-image: url('../assets/images/windy.png');
-}
-.calendar-cell-container.Stormy{
-    background-image: url('../assets/images/stormy.png');
-}
 
 .calendar-day-text{
     font-size: 2rem;

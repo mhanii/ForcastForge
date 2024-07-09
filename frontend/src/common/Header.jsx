@@ -24,7 +24,7 @@ export default function Header() {
         };
         const body = JSON.stringify({ email });
         const response = await axios.post(
-          'http://127.0.0.1:8000/auth/check_auth',body,config
+          'https://fullstack-forecast-forge-03fcfb305bcd.herokuapp.com/auth/check_auth',body,config
         );
 
         setIsAuthenticated(response.data.isAuthenticated === 'success');
@@ -47,7 +47,7 @@ export default function Header() {
         withCredentials: true,
       };
 
-      await axios.post('http://127.0.0.1:8000/auth/logout', {}, config);
+      await axios.post('https://fullstack-forecast-forge-03fcfb305bcd.herokuapp.com/auth/logout', {}, config);
       Cookies.remove('email');
       setIsAuthenticated(false);
       navigate('/login');
@@ -62,9 +62,9 @@ export default function Header() {
     <div className="header-main-container">
       <div className='logo-container'><a className='logo' href="/">ForecastForge</a></div>
       <div className='other-buttons-container'>
-        <button className='header-button about-us'>Nosotros</button>
-        <button className='header-button contact-us'>Contactanos</button>
-        <button className='header-button pricing'>Precios</button>
+        <Link to='/aboutus' className='header-button about-us'>Nosotros</Link>
+        <Link to='/contactus' className='header-button contact-us'>Contactanos</Link>
+        <Link to='/pricing' className='header-button pricing'>Precios</Link>
       </div>
       <div className="account-buttons-container">
         {isAuthenticated ? (

@@ -60,7 +60,7 @@ const SignupPage = () => {
     };
     const body = JSON.stringify({ email, password,plan });
     try {
-      const res = await axios.post('api/auth/signup', body, config);
+      const res = await axios.post('https://fullstack-forecast-forge-03fcfb305bcd.herokuapp.com/auth/signup', body, config);
       return res;
     } catch (err) {
       console.error(err);
@@ -96,7 +96,8 @@ const SignupPage = () => {
       <main>
         <form method='post' onSubmit={(e) => {handleSubmit(e)}} className="auth-form">
          <CSRFToken /> 
-          <h2>Inscribirse - {formData.plan.toUpperCase()} Plan</h2>
+         <h1>Inscribirse</h1>
+          <h2>{formData.plan.toUpperCase()} Plan</h2>
 
 
           <input

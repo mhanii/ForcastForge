@@ -22,7 +22,7 @@ export default function CSRFToken() {
     useEffect(()=>{
         const fetchData = async ()=>{
             try{
-                await axios.get('api/auth/csrf_cookie')
+                await axios.get('https://fullstack-forecast-forge-03fcfb305bcd.herokuapp.com/auth/csrf_cookie')
             }catch(err){
                 console.log(err)
             }

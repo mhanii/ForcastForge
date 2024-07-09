@@ -27,7 +27,7 @@ export default function UpcomingPlans() {
     useEffect(() => {
         const fetchPlans = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/plans/get_plans', {
+                const response = await axios.get('https://fullstack-forecast-forge-03fcfb305bcd.herokuapp.com/plans/get_plans', {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ export default function UpcomingPlans() {
         const planData = { name, type, location, date };
 
         try {
-            const response = await axios.post('http://127.0.0.1:8000/plans/add_plan', planData, {
+            const response = await axios.post('https://fullstack-forecast-forge-03fcfb305bcd.herokuapp.com/plans/add_plan', planData, {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',

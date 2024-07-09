@@ -9,6 +9,8 @@ import LoginPage from './loginpage/LogInPage'
 import SignupPage from './signuppage/SignUpPage'
 import PricingPage from './pricingpage/PricingPage'
 import { IPProvider } from './common/Context'
+import AboutUs from './common/AboutUs'
+import ContactUs from './common/ContactUs'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -24,6 +26,8 @@ function App() {
     <Route path="/login" element={<LoginPage />} />
     <Route path="/signup" element={<SignupPage />} />
     <Route path="/pricing" element={<PricingPage />} />
+    <Route path='aboutus' element={<AboutUs />} />
+    <Route path='contactus' element={<ContactUs />} />
     {/* Add other routes here */}
   </Routes>
   </IPProvider>

@@ -22,7 +22,8 @@ export default function GetLocation() {
   useEffect(() => {
     const fetchGeoInfo = async () => {
       try {
-        const response = await fetch(`https://ipapi.co/${ipAddress}/json/`);
+        const token = '221a3aa5f9a16c';  // Replace with your ipinfo token
+        const response = await fetch(`https://ipinfo.io/${ipAddress}?token=${token}`);
         const data = await response.json();
         setGeoInfo(data);
       } catch (error) {

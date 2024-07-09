@@ -17,11 +17,18 @@ const WeatherForecast = () => {
                 const ipResponse = await axios.get('https://api.ipify.org?format=json');
                 const ipAddress = ipResponse.data.ip;
                 setIp(ipAddress);
+    
+                const ipinfoToken = '221a3aa5f9a16c';  // Replace with your ipinfo token
+                const geoResponse = await axios.get(`https://ipinfo.io/${ipAddress}?token=${ipinfoToken}`);
+    
+                if (geoResponse.data) {
+                    setCity(geoResponse.data.city);
 
-                const geoResponse = await axios.get(`http://ip-api.com/json/${ipAddress}`);
-                setCity(geoResponse.data.city);
+                } else {
+                    throw new Error('Location data not found in the response');
+                }
             } catch (err) {
-                console.error('Error fetching IP or city:', err);
+                console.error('Error fetching IP or location data:', err);
                 setError('Error fetching location data');
             }
         };
@@ -34,7 +41,7 @@ const WeatherForecast = () => {
             if (!ip || !city) return;
 
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/weather_forecast/?city=${city}&ip=${ip}`, {
+                const response = await axios.get(`https://fullstack-forecast-forge-03fcfb305bcd.herokuapp.com/api/weather_forecast/?city=${city}&ip=${ip}`, {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
